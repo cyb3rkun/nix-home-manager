@@ -62,6 +62,13 @@ in {
 		rofi
 		grimblast
 	];
+	i18n.inputMethod = {
+		enable = true;
+		type = "fcitx5";
+		fcitx5.addons = with pkgs; [
+			fcitx5-mozc
+		];
+	};
 
 	# Home Manager is pretty good at managing dotfiles. The primary way to manage
 	# plain files is through 'home.file'.
@@ -100,4 +107,5 @@ in {
 
 	# Let Home Manager install and manage itself.
 	programs.home-manager.enable = true;
+
 }

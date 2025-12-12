@@ -59,7 +59,11 @@ return {
 		{
 			"mbbill/undotree",
 			config = function()
-				vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
+				vim.keymap.set(
+					"n",
+					"<leader>u",
+					vim.cmd.UndotreeToggle
+				)
 			end,
 		},
 		{
@@ -167,10 +171,30 @@ return {
 
 			local keymap = vim.keymap.set
 
-			keymap("n", "<Insert>", substitute.operator, { desc = "Substitute with motion" })
-			keymap("n", "<Insert><Insert>", substitute.line, { desc = "Substitute line" })
-			keymap("n", "<F3>", substitute.eol, { desc = "Substitute to end of line" })
-			keymap("x", "<F7>", substitute.line, { desc = "Substitute in visual mode" })
+			keymap(
+				"n",
+				"<Insert>",
+				substitute.operator,
+				{ desc = "Substitute with motion" }
+			)
+			keymap(
+				"n",
+				"<Insert><Insert>",
+				substitute.line,
+				{ desc = "Substitute line" }
+			)
+			keymap(
+				"n",
+				"<F3>",
+				substitute.eol,
+				{ desc = "Substitute to end of line" }
+			)
+			keymap(
+				"x",
+				"<F7>",
+				substitute.line,
+				{ desc = "Substitute in visual mode" }
+			)
 
 			keymap("n", "sx", exchange.operator, {
 				noremap = true,
@@ -187,6 +211,16 @@ return {
 			keymap("n", "sxc", exchange.cancel, {
 				noremap = true,
 				desc = "cancel swap",
+			})
+		end,
+	},
+	{
+		"tomiis4/Hypersonic.nvim",
+		event = "CmdlineEnter",
+		cmd = "Hypersonic",
+		config = function()
+			require("hypersonic").setup({
+				-- config
 			})
 		end,
 	},
