@@ -9,7 +9,7 @@ Keymap("n", "<leader>nh", vim.cmd.nohl)
 
 -- NOTE: A keymap that starts the server for godot LSP and DAP
 Keymap("n", "<leader>sg", function()
-	vim.fn.serverstart("127.0.0.1:6004")
+	vim.fn.serverstart("./godothost")
 end, { noremap = true })
 
 Keymap("n", "<leader>nd", "<cmd>NoiceDismiss<CR>", { desc = "Dismiss Noice Messages" })

@@ -49,7 +49,7 @@ autocmd("BufEnter", {
 local server_started
 autocmd({ "VimEnter", "DirChanged" }, {
 	callback = function()
-		local server_address = "127.0.0.1:6004"
+		local server_address = "/tmp/godothost"
 
 		local current_working_directory = vim.fn.getcwd() .. "/"
 		local root_file_pattern = {
@@ -70,6 +70,7 @@ autocmd({ "VimEnter", "DirChanged" }, {
 				)
 				vim.fn.serverstart(server_address)
 				server_started = true
+				P(vim.fn.serverlist())
 				return
 			else
 				vim.fn.serverstop(server_address)

@@ -1,5 +1,5 @@
 ---@diagnostic disable-next-line: undefined-global
-local capabilities = require("blink.cmp").get_lsp_capabilities(capabilities)
+local capabilities = require("blink.cmp").get_lsp_capabilities()
 
 vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function(ev)
@@ -11,9 +11,12 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		keymaps(client, bufnr)
 
 		-- format with lsp
-		vim.api.nvim_buf_create_user_command(bufnr, "Format", function()
-			vim.lsp.buf.format()
-		end, { desc = "LSP: Format current buffer with" })
+		vim.api.nvim_buf_create_user_command(
+			bufnr,
+			"Format",
+			function() vim.lsp.buf.format() end,
+			{ desc = "LSP: Format current buffer with" }
+		)
 	end,
 })
 
@@ -24,7 +27,7 @@ vim.lsp.config("*", { capabilities = capabilities })
 local default_servers = {
 	-- "lua_ls",
 	"jdtls",
-	"gdscript",
+	-- "gdscript",
 	-- "csharp_ls",
 	"bashls",
 	"marksman",
@@ -50,6 +53,7 @@ for _, s in ipairs(default_servers) do
 	vim.lsp.enable({ s })
 end
 
+vim.lsp.enable({ "gdscript" })
 vim.lsp.enable({ "clangd" })
 vim.lsp.enable({ "lua_ls" })
 vim.lsp.enable({ "biome" })
